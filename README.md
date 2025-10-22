@@ -19,3 +19,6 @@ touch .gitignore
 mkdir front && cd front
 npm create vite@latest .
 choose react and typescript
+
+npm i @chakra-ui/react @emotion/react
+npm i react-router-dom
