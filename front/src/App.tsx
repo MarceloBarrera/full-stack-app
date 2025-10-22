@@ -15,6 +15,10 @@ function App() {
             <ComponentLink asChild>
               <Link to="/analytics">Analytics </Link>
             </ComponentLink>
+            {" | "}
+            <ComponentLink asChild>
+              <Link to="/geo">Geospatial Viewer</Link>
+            </ComponentLink>
           </Box>
         </nav>
       </Flex>
