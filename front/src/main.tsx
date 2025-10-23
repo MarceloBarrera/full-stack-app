@@ -7,6 +7,7 @@ import App from "./App.tsx";
 import PeoplePage from "./pages/PeoplePage.tsx";
 import AnalyticsPage from "./pages/AnalyticsPage.tsx";
 import GeoSpatialViewerPage from "./pages/GeoSpatialViewerPage.tsx";
+import TasksPage from "./pages/TasksPage.tsx";
 
 import "./index.css";
 
@@ -19,6 +20,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="people" element={<PeoplePage />} />
             <Route path="analytics" element={<AnalyticsPage />} />
             <Route path="geo" element={<GeoSpatialViewerPage />} />
+            <Route path="tasks" element={<TasksPage />} />
             {/* <Route path="people/:id" element={<EditPersonPage />} />
           <Route path="people/:id/friends" element={<FriendsPage />} />
           <Route path="add-person" element={<AddPersonPage />} /> 

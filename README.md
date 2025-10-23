@@ -24,3 +24,6 @@ npm i @chakra-ui/react @emotion/react
 npm i react-router-dom
 
 npm install leaflet react-leaflet
+
+npm i axios
+npm i react-icons

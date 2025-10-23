@@ -3,6 +3,7 @@ import cors from "cors";
 import path from "path";
 import { overlays } from "../data/overlays.json";
 import peopleRoute from "./routes/peopleRoute";
+import tasksRoute from "./routes/tasksRoute";
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(
 // Routes
 
 app.use("/people", peopleRoute);
+app.use("/tasks", tasksRoute);
 
 app.get("/overlays", (req, res) =>
   // console.log("path:", __dirname);
