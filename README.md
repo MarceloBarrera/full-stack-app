@@ -27,3 +27,4 @@ npm install leaflet react-leaflet
 
 npm i axios
 npm i react-icons
+npm i react-hook-form

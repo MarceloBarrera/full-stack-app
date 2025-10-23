@@ -22,7 +22,14 @@ export const getAllTasks = (_req: Request, res: Response) => {
 };
 
 export const createTask = (req: Request, res: Response) => {
-  const task = { id: idCounter++, ...req.body };
+  const { title, status } = req.body;
+  if (!title || title.length < 3) {
+    return res
+      .status(400)
+      .json({ error: "Title must be at least 3 characters" });
+  }
+
+  const task = { id: idCounter++, title, status };
   tasks.push(task);
   res.status(201).json(task);
 };

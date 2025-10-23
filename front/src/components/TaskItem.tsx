@@ -11,7 +11,7 @@ export const TaskItem = ({
   task: Task;
   onUpdate: () => void;
 }) => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(task.status === "completed");
 
   const toggleStatus = async () => {
     await axios.put(`http://localhost:3001/tasks/${task.id}`, {
@@ -33,10 +33,10 @@ export const TaskItem = ({
       alignItems="center"
       justifyContent="space-between"
     >
-      <Box width="150px">
+      <Box width="150px" tabIndex={0}>
         <Text>{task.title}</Text>
       </Box>
-      <Box width="150px">
+      <Box width="150px" tabIndex={0}>
         <Text>{task.status}</Text>
       </Box>
 
