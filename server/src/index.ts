@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
 import { people } from "../data/people.json";
+import { overlays } from "../data/overlays.json";
 
 const app = express();
 
@@ -27,7 +29,6 @@ app.post("/people", (req, res) => {
   return res.json(newPerson);
 });
 
-// get a person by id
 app.get("/people/:id", (req, res) => {
   const { id } = req.params;
   const person = people.find((p) => p.id === id);
@@ -36,6 +37,15 @@ app.get("/people/:id", (req, res) => {
   }
   return res.json(person);
 });
+
+app.get("/overlays", (req, res) =>
+  // console.log("path:", __dirname);
+  // could be done with sendFile as well
+  // res.sendFile(path.join(__dirname, "../data", "overlays.json"));
+  res.json(overlays)
+);
+
+app.use("/mock", express.static(path.join(__dirname, "../data")));
 
 // Start the server
 const port = process.env.PORT || 3001;

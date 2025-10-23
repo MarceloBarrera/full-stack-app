@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "type": "park" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-3.19, 55.954],
+            [-3.17, 55.954],
+            [-3.17, 55.956],
+            [-3.19, 55.956],
+            [-3.19, 55.954]
+          ]
+        ]
+      }
+    }
+  ]
+}

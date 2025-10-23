@@ -1,9 +1,16 @@
-import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  useMap,
+  GeoJSON,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   center: [number, number];
+  activeOverlays: string[];
 }
 
 function Recenter({ center }: { center: [number, number] }) {
@@ -15,8 +22,21 @@ function Recenter({ center }: { center: [number, number] }) {
   return null;
 }
 
-export const MapViewer = ({ center }: Props) => {
-  console.log("Map center:", center);
+export const MapViewer = ({ center, activeOverlays }: Props) => {
+  const [layers, setLayers] = useState<
+    Record<string, GeoJSON.FeatureCollection>
+  >({});
+
+  useEffect(() => {
+    activeOverlays.forEach((id) => {
+      if (!layers[id]) {
+        fetch(`http://localhost:3001/mock/${id}.geojson`)
+          .then((res) => res.json())
+          .then((data) => setLayers((prev) => ({ ...prev, [id]: data })));
+      }
+    });
+  }, [activeOverlays, layers]);
+
   return (
     <MapContainer
       center={center}
@@ -26,6 +46,9 @@ export const MapViewer = ({ center }: Props) => {
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <Recenter center={center} />
       <Marker position={center} />
+      {activeOverlays.map(
+        (id) => layers[id] && <GeoJSON key={id} data={layers[id]} />
+      )}
     </MapContainer>
   );
 };

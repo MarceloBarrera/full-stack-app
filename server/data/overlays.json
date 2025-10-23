@@ -1,0 +1,14 @@
+{
+  "overlays": [
+    {
+      "id": "population",
+      "name": "Population Density",
+      "url": "/mock/population.geojson"
+    },
+    {
+      "id": "landuse",
+      "name": "Land Use",
+      "url": "/mock/landuse.geojson"
+    }
+  ]
+}
