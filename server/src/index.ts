@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import path from "path";
-import { people } from "../data/people.json";
 import { overlays } from "../data/overlays.json";
+import peopleRoute from "./routes/peopleRoute";
 
 const app = express();
 
@@ -18,25 +18,7 @@ app.use(
 
 // Routes
 
-app.get("/people", (_req, res) => res.json(people));
-
-app.post("/people", (req, res) => {
-  const newPerson = req.body;
-  // use a guid generator.
-  // for simplicity, we will use the length of the array + 1 as the id
-  newPerson.id = (people.length + 1).toString();
-  people.push(newPerson);
-  return res.json(newPerson);
-});
-
-app.get("/people/:id", (req, res) => {
-  const { id } = req.params;
-  const person = people.find((p) => p.id === id);
-  if (!person) {
-    return res.status(404).json({ message: "Person not found" });
-  }
-  return res.json(person);
-});
+app.use("/people", peopleRoute);
 
 app.get("/overlays", (req, res) =>
   // console.log("path:", __dirname);
