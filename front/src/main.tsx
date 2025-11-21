@@ -11,6 +11,7 @@ import TasksPage from "./pages/TasksPage.tsx";
 
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { EditPersonPage } from "./pages/EditPersonPage/EditPersonPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,8 @@ createRoot(document.getElementById("root")!).render(
           <Routes>
             <Route path="/" element={<App />}>
               <Route path="people" element={<PeoplePage />} />
+              <Route path="people/:id" element={<EditPersonPage />} />
+
               <Route path="analytics" element={<AnalyticsPage />} />
               <Route path="geo" element={<GeoSpatialViewerPage />} />
               <Route path="tasks" element={<TasksPage />} />

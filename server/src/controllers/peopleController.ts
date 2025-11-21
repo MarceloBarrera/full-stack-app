@@ -21,3 +21,15 @@ export const getPersonById = (req: Request, res: Response) => {
   }
   return res.json(person);
 };
+
+// update a person by id
+export const updatePersonById = (req: Request, res: Response) => {
+  const { id } = req.params;
+  const updatedPerson = req.body;
+  const index = people.findIndex((p) => p.id === id);
+  if (index === -1) {
+    return res.status(404).json({ message: "Person not found" });
+  }
+  people[index] = { ...people[index], ...updatedPerson };
+  return res.json(people[index]);
+};
