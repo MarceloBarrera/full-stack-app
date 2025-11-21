@@ -44,3 +44,47 @@ export const deletePersonById = (req: Request, res: Response) => {
   const deletedPerson = people.splice(index, 1);
   return res.json(deletedPerson[0]);
 };
+
+// add a person to a person's friends list
+export const addFriendToPerson = (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { friendId } = req.body;
+  const person = people.find((p) => p.id === id);
+  const friend = people.find((p) => p.id === friendId);
+  if (!person || !friend) {
+    return res.status(404).json({ message: "Person or friend not found" });
+  }
+  if (!person.friends) {
+    person.friends = [];
+  }
+  person.friends.push(friendId);
+  return res.json(person);
+};
+
+// remove a person from a person's friends list
+export const removeFriendFromPerson = (req: Request, res: Response) => {
+  const { id, friendId } = req.params;
+  const person = people.find((p) => p.id === id);
+  if (!person || !person.friends) {
+    return res
+      .status(404)
+      .json({ message: "Person or friends list not found" });
+  }
+  const friend = people.find((p) => p.id === friendId);
+  if (!friend) {
+    return res.status(404).json({ message: "Friend not found" });
+  }
+  person.friends = person.friends.filter((fId) => fId !== friendId);
+  return res.json(person);
+};
+
+// search a person by name and look in the forename and surname fields
+export const searchPeopleByName = (req: Request, res: Response) => {
+  const { name } = req.params;
+  const results = people.filter(
+    (p) =>
+      p.forename.toLowerCase().includes(name.toLowerCase()) ||
+      p.surname.toLowerCase().includes(name.toLowerCase())
+  );
+  return res.json(results);
+};

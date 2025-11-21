@@ -5,6 +5,9 @@ import {
   getPersonById,
   updatePersonById,
   deletePersonById,
+  addFriendToPerson,
+  removeFriendFromPerson,
+  searchPeopleByName,
 } from "../controllers/peopleController";
 
 const router = Router();
@@ -14,5 +17,8 @@ router.post("/", createPerson);
 router.get("/:id", getPersonById);
 router.put("/:id", updatePersonById);
 router.delete("/:id", deletePersonById);
+router.post("/:id/friends", addFriendToPerson);
+router.delete("/:id/friends/:friendId", removeFriendFromPerson);
+router.get("/search/:name", searchPeopleByName);
 
 export default router;
