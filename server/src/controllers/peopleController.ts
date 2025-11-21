@@ -33,3 +33,14 @@ export const updatePersonById = (req: Request, res: Response) => {
   people[index] = { ...people[index], ...updatedPerson };
   return res.json(people[index]);
 };
+
+// delete a person by id
+export const deletePersonById = (req: Request, res: Response) => {
+  const { id } = req.params;
+  const index = people.findIndex((p) => p.id === id);
+  if (index === -1) {
+    return res.status(404).json({ message: "Person not found" });
+  }
+  const deletedPerson = people.splice(index, 1);
+  return res.json(deletedPerson[0]);
+};
