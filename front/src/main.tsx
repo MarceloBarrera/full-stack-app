@@ -7,7 +7,7 @@ import App from "./App.tsx";
 import PeoplePage from "./pages/PeoplePage/PeoplePage.tsx";
 import AnalyticsPage from "./pages/AnalyticsPage.tsx";
 import GeoSpatialViewerPage from "./pages/GeoSpatialViewerPage.tsx";
-import TasksPage from "./pages/TasksPage.tsx";
+import TasksPage from "./pages/TasksPage/TasksPage.tsx";
 
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

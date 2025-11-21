@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { TaskForm } from "../components/TaskForm";
-import { TaskList } from "../components/TaskList";
-import type { Task } from "../api/models/Task";
+import { TaskForm } from "../../components/TaskForm";
+import { TaskList } from "../../components/TaskList";
+import type { Task } from "../../api/models/Task";
 import { Box, Heading, NativeSelect, Stack } from "@chakra-ui/react";
+
+const BASE_URL = "http://localhost:3001";
 
 function TasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   const [filter, setFilter] = useState<"all" | "pending" | "completed">("all");
   const fetchTasks = async () => {
-    const res = await axios.get("http://localhost:3001/tasks");
+    const res = await axios.get(`${BASE_URL}/tasks`);
     setTasks(res.data);
   };
 
